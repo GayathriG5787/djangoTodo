@@ -11,3 +11,5 @@ db.sqlite3
 
 # VS Code
 .vscode/
+
+# In the previous commit, pycache not tracked using .gitignore, connected our app with the project
