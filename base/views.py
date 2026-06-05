@@ -51,6 +51,8 @@ class TaskList(LoginRequiredMixin, ListView):
         if search_input:
             # the i in icontains refers to case-insensitive
             context['tasks'] = context['tasks'].filter(title__icontains= search_input)
+            
+        context['search_input'] = search_input
         
         return context
     
