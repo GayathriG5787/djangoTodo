@@ -16,9 +16,9 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
     next_page = "tasks"
 
-class TaskList(ListView):
+class TaskList(LoginRequiredMixin, ListView):
     model = Task
-    context_objecLoginRequiredMixin, t_name = 'tasks'
+    context_object_name = 'tasks'
     
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
