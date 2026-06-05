@@ -15,10 +15,19 @@ class CustomLoginView(LoginView):
     fields = '__all__'
     redirect_authenticated_user = True
     next_page = "tasks"
+    
+# Python uses MRO = Method Resolution Order, so the order of arguments matter. LoginRequiredMixin should always come before ListView otherwise, the login function might not work properly
 
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
-    context_object_name = 'tasks'
+    # If I didn't mention this, the default name would be task_list
+    context_object_name = 'tasks' 
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = context['tasks'].filter(user=self.request.user)
+        context['count'] = context['tasks'].filter(complete = False).count()
+        return context
     
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
