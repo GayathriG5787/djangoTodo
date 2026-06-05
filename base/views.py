@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 
 from django.contrib.auth.views import LoginView
-
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 from .models import Task
 
@@ -15,6 +16,12 @@ class CustomLoginView(LoginView):
     fields = '__all__'
     redirect_authenticated_user = True
     next_page = "tasks"
+    
+class RegisterPage(FormView):
+    template_name = 'base/register.html'
+    form_class = UserCreationForm
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('tasks')
     
 # Python uses MRO = Method Resolution Order, so the order of arguments matter. LoginRequiredMixin should always come before ListView otherwise, the login function might not work properly
 
