@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -20,8 +20,20 @@ class CustomLoginView(LoginView):
 class RegisterPage(FormView):
     template_name = 'base/register.html'
     form_class = UserCreationForm
-    redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
+    
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super().form_valid(form)
+    
+    # *args refers to positional arguments
+    # **kwargs refers to keyword arguments
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('tasks')
+        return super().get(*args, **kwargs)
     
 # Python uses MRO = Method Resolution Order, so the order of arguments matter. LoginRequiredMixin should always come before ListView otherwise, the login function might not work properly
 
