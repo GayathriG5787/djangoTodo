@@ -50,6 +50,7 @@ class TaskList(LoginRequiredMixin, ListView):
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
             # the i in icontains refers to case-insensitive
+            # use title__startswith if you want the starting of the task to match
             context['tasks'] = context['tasks'].filter(title__icontains= search_input)
             
         context['search_input'] = search_input
