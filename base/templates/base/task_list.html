@@ -2,6 +2,15 @@
 
 {% block content %}
 
+<div class="header-bar">
+  <div>
+    <!-- |title ensures that the first letter is capitalized -->
+    <h1>Hello {{request.user|title}}</h1>
+    <!-- |pluralize checks the count value and if the count > 1 it adds "s" -->
+    <h3 style="margin: 0;">You have <i>{{count}}</i> incomplete task{{ count|pluralize:"s" }} </h3>
+  </div>
+</div>
+
 {% if request.user.is_authenticated %}
     <p>{{request.user}}</p>
     <form method="POST" action="{% url 'logout' %}">
