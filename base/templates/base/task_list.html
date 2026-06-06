@@ -20,9 +20,6 @@
     {% endif %}
 </div>
 
-<hr />
-
-<h1>My ToDo List</h1>
 <a href="{% url 'task-create' %}">Add Task</a>
 
 <form method="GET" action="">
@@ -30,7 +27,34 @@
   <input type="submit" value="Search">
 </form>
 
-<table>
+<div class="task-items-wrapper">
+  {% for task in tasks %}
+    <div class="task-wrapper">
+      {% if task.complete %}
+        <div class="task-title">
+            <div class="task-complete-icon"></div>
+            <i><s><a href="{% url 'task-update' task.uuid %}">{{task}}</a></s></i>
+        </div>
+
+        {% else %}
+        <div class="task-title">
+            <div class="task-incomplete-icon"></div>
+            <a href="{% url 'task-update' task.uuid %}">{{task}}</a>
+        </div>
+
+        <a class="delete-link" href="{% url 'task-delete' task.uuid %}">&#215;</a>
+        
+      {% endif %}
+
+
+    </div>
+
+  {% empty %}
+  <h3>No items in list</h3>
+  {% endfor %}
+</div>
+
+<!-- <table>
   <tr>
     <th>Items</th>
   </tr>
@@ -45,7 +69,7 @@
   {% empty %}
   <h3>No items in list</h3>
   {% endfor %}
-</table>
+</table> -->
 
 
 {% endblock content %}
