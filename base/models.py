@@ -1,7 +1,14 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import User
 
 class Task(models.Model):
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        editable=False,
+        unique=True
+    )
+    
     # If a user is deleted, tasks belonging to that user will also gets deleted, a user field can be null. In the UI input, it can be left empty and that is controlled by blank = True
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=200)

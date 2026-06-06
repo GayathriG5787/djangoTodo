@@ -62,6 +62,11 @@ class TaskDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'task'
     template_name = 'base/task.html'
     
+    # Searches using the uuid field in the DB
+    slug_field = 'uuid'
+    # Get the value from the URL parameter named uuid (if we use slug_url_kwarg = 'task_uuid' here, then in urls, we should use as uuid: task_uuid)
+    slug_url_kwarg = 'uuid'
+    
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['title', 'description', 'complete']
@@ -76,9 +81,15 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
     
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
+    
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+    
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
     
     
