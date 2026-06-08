@@ -78,6 +78,9 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
+# If it is function based view, we would use @login_required for decorator
+# dispatch() is a built in function that acts like a traffic controller, redirecting the request based on HTTP method. We are decorating dispatch method with login_required decorator
+    
 @method_decorator(login_required, name='dispatch')
 class TaskUpdate(UpdateView):
     model = Task
