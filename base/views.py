@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
@@ -76,7 +78,8 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
-class TaskUpdate(LoginRequiredMixin, UpdateView):
+@method_decorator(login_required, name='dispatch')
+class TaskUpdate(UpdateView):
     model = Task
     fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
