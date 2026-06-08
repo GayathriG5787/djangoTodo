@@ -37,10 +37,9 @@
     {% if task.complete %}
     <div class="task-title">
       <div class="task-complete-icon"></div>
-      <i
-        ><s><a href="{% url 'task-update' task.uuid %}">{{task}}</a></s></i
-      >
+      <i><s><a href="{% url 'task-update' task.uuid %}">{{task}}</a></s></i>
     </div>
+    <a class="delete-link" href="{% url 'task-delete' task.uuid %}">&#215;</a>
 
     {% else %}
     <div class="task-title">
