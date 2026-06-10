@@ -24,7 +24,12 @@
   <form class="search" method="GET" action="">
     <input type="text" name="search-area" value="{{search_input}}" />
     <input class="button" type="submit" value="Search" />
-  </form>
+    {% if search_input %}
+    <a class="clear-icon" href="{% url 'tasks' %}" title="Clear Search">
+        &#8635;
+    </a>
+    {% endif %}
+</form>
 
   <a id="add-link" href="{% url 'task-create' %}">&#x2b;</a>
 </div>
