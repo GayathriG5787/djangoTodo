@@ -12,6 +12,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
+from .forms import TaskForm
+
 from .models import Task
 
 # def display(request):
@@ -75,8 +77,14 @@ class TaskDetail(LoginRequiredMixin, DetailView):
     
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['title', 'description']
+    form_class = TaskForm
     success_url = reverse_lazy('tasks')
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     
     def form_valid(self, form):
         form.instance.user = self.request.user
