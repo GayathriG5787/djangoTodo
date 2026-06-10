@@ -10,12 +10,15 @@
     
     <label for="">{{form.username.label}}</label>
     {{form.username}}
+    {{form.username.errors}}
 
     <label for="">{{form.password1.label}}</label>
     {{form.password1}}
+    {{form.password1.errors}}
 
     <label for="">{{form.password2.label}}</label>
     {{form.password2}}
+    {{form.password2.errors}}
 
     <button style="margin-top: 10px;" class="button" type="submit">Register</button>
   </form>
