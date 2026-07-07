@@ -8,6 +8,12 @@ Each registered user has a private workspace where they can manage their own tas
 
 ---
 
+## Live Demo
+
+🔗 **Live Application:** https://djangotodo-ncan.onrender.com/
+
+> **Note:** This application is hosted on Render's free tier. The initial request after a period of inactivity may take up to a minute while the service wakes up.
+
 # Features
 
 * User Registration
