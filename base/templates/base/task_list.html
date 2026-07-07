@@ -5,7 +5,7 @@
     <!-- |title ensures that the first letter is capitalized -->
     <h1 class="username">Hello {{request.user|title}}</h1>
     <!-- |pluralize checks the count value and if the count > 1 it adds "s" -->
-    <h3 style="margin: 0">
+    <h3 class="task-count">
       You have <i>{{count}}</i> incomplete task{{ count|pluralize:"s" }}
     </h3>
   </div>
