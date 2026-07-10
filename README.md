@@ -231,3 +231,14 @@ https://youtu.be/llbtoQTt4qw?si=ZPlehSaqcMMQdgus
 Many thanks to Dennis Ivy for creating an excellent beginner-friendly Django tutorial.
 
 ---
+
+
+# Author
+
+**Gayathri G**
+
+Full Stack Developer
+
+GitHub: https://github.com/GayathriG5787
+
+LinkedIn: https://www.linkedin.com/in/gayathri-g-146442252
